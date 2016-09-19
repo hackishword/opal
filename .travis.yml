@@ -13,6 +13,9 @@ matrix:
 
   include:
     - rvm: 2.3.1
+      env: RUN=browser_test
+
+    - rvm: 2.3.1
       env: RUN=jshint
 
     - rvm: 2.3.1
@@ -81,3 +84,9 @@ notifications:
   webhooks:
     urls:
       - https://webhooks.gitter.im/e/2ea12333adebda0c2289
+
+addons:
+  sauce_connect:
+    username: "elia"
+    access_key:
+      secure: "Z4Y+JqdwHtRKPiJb9wGJvLRg377PynEucv1L9pZngzmb5sruJ/1n0DwgRhz+WwqG5fq17KTLH4cC+QSykyr6qG6THHzBxazEJXm0nqXfnmdU4xkmG9OT3NwQOMkNawexd79R1Gq2c0bDqbqq+blvZBVf8ZRamSwilRctDG9HwIg="
