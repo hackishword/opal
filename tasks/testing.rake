@@ -286,12 +286,12 @@ end
 class SauceLabs
   include FileUtils
 
-  def initialize(host: '127.0.0.1', port: '3000', username:, access_key:, tunnel: nil)
-    @host = host
-    @port = port
-    @username = username
-    @access_key = access_key
-    @tunnel = tunnel
+  def initialize(options = {})
+    @host = options.fetch(:host, '127.0.0.1')
+    @port = options.fetch(:port, '3000')
+    @username = options.fetch(:username)
+    @access_key = options.fetch(:access_key)
+    @tunnel = options.fetch(:tunnel, nil)
   end
   attr_reader :host, :port, :username, :access_key, :tunnel
 
@@ -310,7 +310,12 @@ class SauceLabs
     end
   end
 
-  def on_platform(browser:, version:, platform: nil, device: nil)
+  def on_platform(options = {})
+    browser = options.fetch(:browser)
+    version = options.fetch(:version)
+    platform = options.fetch(:platform, nil)
+    device = options.fetch(:device, nil)
+
     puts "=============== Testing on browser: #{browser} v#{version} #{"(#{platform})" if platform}"
     require "selenium/webdriver"
 
